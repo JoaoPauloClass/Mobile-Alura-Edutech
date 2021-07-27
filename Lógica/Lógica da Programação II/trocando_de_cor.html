@@ -1,0 +1,49 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+        var cores = ['blue', 'red', 'green'];
+  
+
+
+    var i = 0
+    
+
+    var cor = cores[i]
+    function desenhaBolinha(evento) {
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2 * 3.14)
+        pincel.fill();
+        console.log(evento, cor);
+    }
+    function mudaCor() {
+        if (i < cores.length) {           
+            cor = cores[i];
+            i++;
+            console.log(cor);
+            return false;
+
+        }
+        else {
+          
+            i = 0
+            cor = cores[i]
+            return false;
+        }
+    }
+
+
+    tela.oncontextmenu = mudaCor;
+    tela.onclick = desenhaBolinha;
+
+
+
+
+</script>
